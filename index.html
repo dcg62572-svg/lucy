@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Lucy en 9 pasos: guía para construir tu propio agente local.">
+  <title>Lucy en 9 pasos · Guía</title><link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="hero shell"><div class="hero-content">
+    <div class="eyebrow"><span class="logo-mark">LUCY</span> · GUÍA PDF · SEP 2026</div>
+    <h1>Arma tu propia Lucy en 9 pasos.</h1>
+    <p>Un agente que vive en tu máquina, conoce tu negocio, usa tus herramientas y te contesta hablando. Lee la guía completa directamente en esta página.</p>
+    <div class="meta"><span>10 páginas</span><span>Nivel intermedio</span><span>Un fin de semana</span></div>
+    <div class="actions"><a class="button primary" href="assets/LUCY-guia-9-pasos.pdf" download><svg class="download-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"></path><path d="m7 10 5 5 5-5"></path><path d="M5 21h14"></path></svg>Descargar PDF</a><a class="button secondary" href="#page-1">Leer la guía</a></div>
+  </div></header>
+  <main class="shell layout"><nav class="toc" aria-label="Navegación de páginas"><div class="toc-title">Contenido</div><a href="#page-1">Página 01</a><a href="#page-2">Página 02</a><a href="#page-3">Página 03</a><a href="#page-4">Página 04</a><a href="#page-5">Página 05</a><a href="#page-6">Página 06</a><a href="#page-7">Página 07</a><a href="#page-8">Página 08</a><a href="#page-9">Página 09</a><a href="#page-10">Página 10</a></nav><article class="document"><section class="page" id="page-1"><div class="page-label">PORTADA · GUÍA PDF</div><h2>Página 01 <span aria-hidden="true">/</span> 10</h2><div class="page-content">GUÍA PDF · 9 PASOS · UN FIN DE SEMANA · NIVEL INTERMEDIO
+
+
+ ARMA TU PROPIA
+ LUCY EN 9 PASOS
+ Un agente que vive en tu máquina, conoce tu negocio, usa tus herramientas y te contesta hablando. Aquí tienes los
+ comandos exactos de cada paso, los archivos que vas a editar y el checklist para cerrar el domingo.
+
+
+
+ LO QUE VAS A ENCONTRAR
+ PG 02 · MAPA         El stack completo y los archivos que vas a tocar
+
+ PG 03 · PASOS        Dónde vive tu Lucy y qué modelo la mueve
+ 1-2
+
+ PG 04 · PASOS        Hermes Agent y tu SOUL.md
+ 3-4
+
+ PG 05 · PASOS        Correo, calendario, navegador y memoria
+ 5-6
+
+ PG 06 · PASOS        Skills, Telegram, WhatsApp y voz
+ 7-8
+
+ PG 07 · PASO 9       La interfaz Lucy con Claude Code
+
+ PG 08 ·              Lo que tiene que funcionar el domingo
+ CHECKLIST
+
+ PG 09 · ZONA         Lo que el video simplificó y los riesgos reales
+ HONESTA
+
+
+
+  VERIFICADO
+  El 16-sep-2026 contra Hermes Agent v2026.9.14 y las docs oficiales.</div></section><section class="page" id="page-2"><div class="page-label">CONTEXTO · MAPA</div><h2>Página 02 <span aria-hidden="true">/</span> 10</h2><div class="page-content">CONTEXTO
+
+ EL MAPA DEL FIN DE SEMANA
+ Lucy no es una app que descargas. Son piezas que encajan: una máquina que no se apaga, un modelo que piensa,
+ un harness que la convierte en agente y canales por donde le hablas. Hermes Agent (Nous Research, código
+ abierto) hace de columna vertebral: todo lo demás se conecta a él.
+
+
+ EL STACK
+ CASA                 Mac con chip Apple, PC con Linux o WSL2, o un VPS de 5 dólares al mes.
+
+ CEREBRO              Claude, GPT o Gemini, con tu propia API key.
+
+ HARNESS              Hermes Agent: herramientas, memoria, skills y canales.
+
+ CANALES              Telegram, WhatsApp y voz con ElevenLabs.
+
+ INTERFAZ             Una pantalla propia que construyes con Claude Code.
+
+
+
+ LOS ARCHIVOS QUE VAS A EDITAR
+  ~/.hermes/.env -&gt; API keys (modelo, Telegram, ElevenLabs)
+  ~/.hermes/config.yaml -&gt; modelo, herramientas, MCP y voz
+  ~/.hermes/SOUL.md -&gt; identidad y tono de tu Lucy
+  ~/.hermes/skills//SKILL.md -&gt; una skill por carpeta
+  /AGENTS.md -&gt; reglas de un proyecto concreto
+  ~/.hermes/memories/ -&gt; MEMORY.md y USER.md (los escribe el agente)
+
+
+
+
+ EL PLAN
+ Sábado: pasos 1 a 5. Instalas, eliges modelo, le das identidad y la conectas a tus herramientas.
+ Domingo: pasos 6 a 9. Memoria, skills, canales, voz e interfaz. Cierras con el checklist de la página 8.</div></section><section class="page" id="page-3"><div class="page-label">SECCIÓN 1 · PASOS 1 Y 2</div><h2>Página 03 <span aria-hidden="true">/</span> 10</h2><div class="page-content">SECCIÓN 1 · PASOS 1 Y 2
+
+ LA CASA Y EL CEREBRO
+
+ PASO 1 · DALE UNA CASA
+ Hermes corre en macOS con chip Apple (M1 en adelante), Linux, Windows y Docker. Una Mac mini sirve. Una
+ laptop vieja con procesador Intel sirve solo si le instalas Linux. Si no quieres dejar nada prendido en casa, un VPS
+ de 5 dólares al mes alcanza.
+ INSTALA HERMES AGENT · MAC, LINUX, WSL2
+
+  curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
+  source ~/.zshrc # en Linux: source ~/.bashrc
+  hermes doctor # chequea que todo funcione
+
+ WINDOWS SIN WSL · POWERSHELL
+
+  iex (irm https://hermes-agent.nousresearch.com/install.ps1)
+
+
+
+
+ PASO 2 · ELIGE EL MODELO
+ No estás atada a ninguno: cambias de proveedor cuando quieras. Pega la llave del que elijas en ~/.hermes/.env y
+ selecciónalo en el menú.
+ CONECTA EL MODELO
+
+  # ~/.hermes/.env (pega solo la del proveedor que uses)
+  ANTHROPIC_API_KEY=sk-ant-... # Claude
+  OPENAI_API_KEY=sk-... # GPT
+  GOOGLE_API_KEY=... # Gemini
+
+  hermes model # elige proveedor y modelo
+  hermes # empieza a hablarle
+
+
+ CLAUDE PRO           Usa API key. El login con tu cuenta de Claude solo funciona en Claude Max con uso extra activado.
+
+ OPENROUTER           Una sola llave (OPENROUTER_API_KEY) para probar varios modelos.
+
+
+
+  SI SOLO HACES UNA COSA HOY
+  Corre hermes setup. El asistente te lleva por modelo, herramientas y canales en un solo recorrido.</div></section><section class="page" id="page-4"><div class="page-label">SECCIÓN 2 · PASOS 3 Y 4</div><h2>Página 04 <span aria-hidden="true">/</span> 10</h2><div class="page-content">SECCIÓN 2 · PASOS 3 Y 4
+
+ EL HARNESS Y TU IDENTIDAD
+
+ PASO 3 · EL HARNESS AGÉNTICO
+ Un modelo solo responde. Un harness le da manos: ejecuta comandos, usa herramientas, recuerda y trabaja por su
+ cuenta. Hermes ya quedó instalado en el paso 1; estos son los comandos con los que la vas a manejar.
+ LOS COMANDOS DE HERMES
+
+  hermes setup   # asistente completo
+  hermes model   # cambiar de modelo
+  hermes tools   # prender o apagar herramientas
+  hermes doctor # busca problemas
+  hermes update # actualiza Hermes
+  # ajustes -&gt; ~/.hermes/config.yaml
+  # llaves -&gt; ~/.hermes/.env
+
+
+
+
+ PASO 4 · ENSÉÑALE QUIÉN ES
+ Hermes lee ~/.hermes/SOUL.md en cada conversación: ahí viven su identidad y su tono. Lo crea solo la primera
+ vez que arranca. Ábrelo y reemplázalo con tu contexto. Las reglas de un proyecto concreto van en un AGENTS.md
+ dentro de esa carpeta.
+ PLANTILLA PARA TU SOUL · CAMBIA LO QUE VA EN CORCHETES
+
+  # Lucy
+  Eres Lucy, la asistente personal de [TU NOMBRE].
+
+  ## Mi negocio
+  - Lo que vendo: [PRODUCTO O SERVICIO]
+  - Mis clientes: [CLIENTE IDEAL]
+  - Mis herramientas: [CORREO, CALENDARIO, CRM]
+
+  ## Reglas
+  - Respondes directo y en frases cortas.
+  - Antes de enviar un correo o borrar algo, me preguntas primero.
+  - Si no sabes algo, lo dices. No inventas.
+
+
+
+  - Profesional, con humor seco. Como Lucy: directa, útil y siempre lista.
+
+
+
+  OJO
+  MEMORY.md y USER.md no los escribes tú: los mantiene el propio agente en ~/.hermes/memories/ a medida
+  que hablan.</div></section><section class="page" id="page-5"><div class="page-label">SECCIÓN 3 · PASOS 5 Y 6</div><h2>Página 05 <span aria-hidden="true">/</span> 10</h2><div class="page-content">SECCIÓN 3 · PASOS 5 Y 6
+
+ HERRAMIENTAS Y MEMORIA
+
+ PASO 5 · CONÉCTALA CON TUS HERRAMIENTAS
+ Hermes trae incluida la skill google-workspace para Gmail, Calendar, Drive, Docs y Sheets; se autoriza una sola vez
+ con tu cuenta de Google (su SKILL.md explica el paso). El navegador lo eliges en hermes tools: local con Chromium
+ o en la nube con Browser Use o Browserbase.
+ HERRAMIENTAS
+
+  hermes tools           # activa navegador, terminal y web
+  hermes skills browse   # explora las skills disponibles
+  hermes mcp install   # cualquier app con servidor MCP
+  # los servidores MCP quedan en el bloque mcp_servers:
+  # de ~/.hermes/config.yaml
+
+
+ SOLO CORREO          La skill himalaya con una contraseña de aplicación de Gmail es más simple que el OAuth completo.
+
+ NAVEGADOR            En la nube necesitas BROWSER_USE_API_KEY o BROWSERBASE_API_KEY en tu .env.
+
+
+
+ PASO 6 · DALE MEMORIA PERSISTENTE
+ Hermes ya recuerda entre sesiones: anota lo importante en MEMORY.md y lo que aprende de ti en USER.md. Son
+ notas cortas (unos 2.200 y 1.375 caracteres). Para memoria de largo plazo, conéctale un proveedor externo.
+ MEMORIA DE LARGO PLAZO
+
+  hermes memory setup # elige y conecta un proveedor externo
+  # proveedores soportados: Honcho, Mem0, Supermemory, Hindsight,
+  # OpenViking, Holographic, RetainDB, ByteRover
+
+
+
+  ¿Y LETTA?
+  Letta es un buen sistema de memoria para agentes, pero hoy no tiene integración documentada con Hermes. Si
+  ya lo usas, mira la zona honesta de la página 9.</div></section><section class="page" id="page-6"><div class="page-label">SECCIÓN 4 · PASOS 7 Y 8</div><h2>Página 06 <span aria-hidden="true">/</span> 10</h2><div class="page-content">SECCIÓN 4 · PASOS 7 Y 8
+
+ SKILLS, CANALES Y VOZ
+
+ PASO 7 · SÚMALE SKILLS
+ Una skill es una carpeta con un SKILL.md: las instrucciones de una tarea que repites. Van en ~/.hermes/skills/ y
+ usan el formato abierto de agentskills.io. Ejemplo: ~/.hermes/skills/contratos/SKILL.md.
+ EJEMPLO DE SKILL · CONTRATOS
+
+  ---
+  name: contratos
+  description: Arma contratos de servicio con mi plantilla.
+  ---
+  1. Pide cliente, servicio, precio y fechas.
+  2. Usa la plantilla de ~/negocio/plantilla-contrato.md.
+  3. Muéstrame el borrador antes de enviarlo.
+
+
+
+
+ PASO 8 · CANALES Y VOZ
+ TELEGRAM Y WHATSAPP
+
+  # ~/.hermes/.env
+  TELEGRAM_BOT_TOKEN=...              # te lo da @BotFather
+  TELEGRAM_ALLOWED_USERS=...          # tu ID de usuario de Telegram
+
+  hermes gateway setup   # configura los canales
+  hermes whatsapp        # vincula WhatsApp escaneando un QR
+  hermes gateway install # lo deja como servicio del sistema
+  hermes gateway start
+
+ VOZ CON ELEVENLABS
+
+  # ~/.hermes/.env
+  ELEVENLABS_API_KEY=...
+
+  # ~/.hermes/config.yaml
+  tts:
+    provider: &quot;elevenlabs&quot;
+    elevenlabs:
+       voice_id: &quot;TU_VOICE_ID&quot;
+       model_id: &quot;eleven_multilingual_v2&quot;
+
+  # dependencias de la voz premium:
+  cd ~/.hermes/hermes-agent &amp;&amp; uv pip install -e &quot;.[tts-premium]&quot;
+
+
+ En la terminal activas la voz con /voice on y hablas con Ctrl+B. Por Telegram te contesta con notas de voz.</div></section><section class="page" id="page-7"><div class="page-label">SECCIÓN 5 · PASO 9</div><h2>Página 07 <span aria-hidden="true">/</span> 10</h2><div class="page-content">SECCIÓN 5 · PASO 9
+
+ EL TOQUE LUCY
+ Hermes ya te escucha por Telegram. El toque final es una pantalla propia: le hablas, piensa y te contesta con voz.
+ Hermes trae un servidor compatible con la API de OpenAI y Claude Code construye la interfaz encima.
+ 1 · PRENDE LA API DE HERMES
+
+  # ~/.hermes/.env
+  API_SERVER_ENABLED=true
+  API_SERVER_KEY=inventa-una-clave-larga
+
+  hermes gateway     # queda escuchando en http://127.0.0.1:8642/v1
+
+ 2 · INSTALA Y ABRE CLAUDE CODE
+
+  curl -fsSL https://claude.ai/install.sh | bash
+  mkdir ~/lucy-ui &amp;&amp; cd ~/lucy-ui &amp;&amp; claude
+
+ 3 · PROMPT PARA CLAUDE CODE · COPIA TODO ESTO
+
+  Construye una interfaz web tipo Lucy para mi agente Hermes.
+
+  Contexto:
+  - Hermes expone una API compatible con OpenAI en http://127.0.0.1:8642/v1
+  - Endpoint: POST /v1/chat/completions con model &quot;hermes-agent&quot;
+  - Auth: Bearer con API_SERVER_KEY de ~/.hermes/.env
+  - La API no maneja audio: la voz la pone esta interfaz.
+
+  Quiero:
+  1. Un servidor local simple que guarde las claves. El navegador no ve ninguna.
+  2. Un boton para hablar: grabo, se transcribe, va a Hermes y la respuesta
+     se lee con ElevenLabs (ELEVENLABS_API_KEY y mi voice_id).
+  3. Estilo HUD futurista: fondo oscuro, un aro que pulsa mientras
+     Lucy habla y el historial del chat.
+  4. Un README con los comandos para arrancarlo.
+
+  Antes de programar, dame tu plan y la lista de cosas que te faltan.
+
+
+ PANEL OFICIAL        hermes dashboard abre un panel en http://127.0.0.1:9119. Sirve para configurar; no es la interfaz Lucy.
+
+ ATAJO                Un proyecto de la comunidad ofrece HUD, Whisper y ElevenLabs sobre la API de Hermes.
+                      No es oficial: revísalo antes de instalarlo.
+
+ REQUISITO            Claude Code pide plan Pro, Max, Team o Enterprise, o una cuenta de Console.
+
+
+  SEGURIDAD
+  La API escucha solo en tu máquina (127.0.0.1). No la abras a internet.</div></section><section class="page" id="page-8"><div class="page-label">CHECKLIST DEL DOMINGO</div><h2>Página 08 <span aria-hidden="true">/</span> 10</h2><div class="page-content">CHECKLIST DEL DOMINGO
+
+ LO QUE TIENE QUE FUNCIONAR
+ Antes de dar el fin de semana por cerrado, prueba cada punto. Si uno falla, vuelve al paso que indica.
+
+           ■     hermes doctor termina sin errores                                                     paso 1
+
+           ■     Hermes responde con el modelo que elegiste                                            paso 2
+
+           ■     Le pides que te describa y usa lo de tu SOUL.md                                       paso 4
+
+           ■     Te resume tu agenda de la semana                                                      paso 5
+
+           ■     Abre una web y te trae un dato concreto                                               paso 5
+
+           ■     Recuerda algo que le contaste ayer                                                    paso 6
+
+           ■     Una skill tuya corre de principio a fin                                               paso 7
+
+           ■     Le escribes por Telegram desde el celular y contesta                                  paso 8
+
+           ■     Te responde con la voz de ElevenLabs                                                  paso 8
+
+           ■     Sigue viva cuando reinicias el equipo                                                 paso 8
+
+           ■     La interfaz Lucy abre y habla con Hermes                                              paso 9
+
+
+
+
+ QUÉ CAMBIA PARA TI
+ SEGÚN LO QUE HACES
+
+ SI EMPRENDES         Correo, agenda y seguimientos sin abrir cinco apps: se los pides por Telegram mientras haces otra cosa.
+ SOLO
+
+ SI ERES              Contratos, propuestas y reportes salen de tus skills, siempre con tu formato.
+ FREELANCER
+
+ SI TIENES            Las reglas del negocio quedan escritas en SOUL.md y AGENTS.md, no en la cabeza de una persona.
+ EQUIPO
+
+ SI CREAS             Ideas, guiones y pendientes por nota de voz, desde donde estés.
+ CONTENIDO</div></section><section class="page" id="page-9"><div class="page-label">ZONA HONESTA</div><h2>Página 09 <span aria-hidden="true">/</span> 10</h2><div class="page-content">ZONA HONESTA
+
+ LO QUE EL VIDEO SIMPLIFICÓ
+ Un video de un minuto recorta. Esto es lo que cambia cuando lo haces de verdad.
+
+
+ CORRECCIONES AL VIDEO
+ • Letta no se conecta con Hermes. El video lo nombra como memoria, pero hoy no hay integración documentada
+ entre los dos. Usa la memoria nativa de Hermes o un proveedor de hermes memory setup.
+ • “Hermes Voice” no es un producto oficial. Lo oficial es el modo de voz de Hermes con ElevenLabs (página 6). Hay
+ repos de la comunidad con nombres parecidos: úsalos bajo tu riesgo.
+ • La laptop vieja tiene letra chica. Hermes no soporta macOS en Mac con Intel. Esa laptop sirve si le instalas Linux.
+ • “Un fin de semana” asume que te mueves bien en la terminal. Si nunca la usaste, date más tiempo y avanza un
+ paso por día.
+
+
+ RIESGOS REALES
+ • WhatsApp va por un puente no oficial. Hay riesgo de baneo: usa un número dedicado, nunca el de tu negocio.
+ • Tu plan de Claude importa. Claude Pro no sirve para conectar tu cuenta a Hermes (necesitas API key, que se
+ paga por uso) y Claude Code no está en el plan gratis.
+ • El costo real es el uso. El VPS es barato; lo que sube es el consumo del modelo y de ElevenLabs. Pon un límite de
+ gasto en cada proveedor.
+ • Un agente con acceso a tu correo puede equivocarse. Exige confirmación antes de enviar o borrar: ya va en el
+ SOUL.md de la página 4.
+ • Los comandos cambian. Todo se verificó el 16-sep-2026 con Hermes Agent v2026.9.14. Si algo falla, corre
+ hermes update y hermes doctor.</div></section><section class="page" id="page-10"><div class="page-label">CIERRE</div><h2>Página 10 <span aria-hidden="true">/</span> 10</h2><div class="page-content">CIERRE
+
+ TRES FORMAS DE EMPEZAR
+ SI TIENES 1          Pasos 1, 2 y 4: Hermes instalado, con modelo y con tu SOUL.md.
+ HORA
+
+ SI TIENES 1 DÍA      Suma herramientas, memoria y Telegram: pasos 5, 6 y 8.
+
+ SI TIENES EL         Los 9 pasos y el checklist completo de la página 8.
+ FINDE
+
+
+
+
+ LUCY ES TU ASISTENTE
+ QUE VIVE EN TU RED LOCAL.
+ Cuando tengas tu Lucy andando, cuéntame qué fue lo primero que le pediste. Y si te trabas en un paso, dime en
+ cuál: de ahí sale el próximo video.
+
+
+
+  COMUNIDAD / MÁQUINA IA
+  Guías como esta cada semana, con los archivos listos para copiar y gente armando lo mismo que tú.
+  SKOOL.COM/MAQUINADELEADS</div></section></article></main>
+  <footer class="footer shell"><p>Texto transcrito de <a href="assets/LUCY-guia-9-pasos.pdf">LUCY · Guía 9 pasos</a>. Fondo visual proporcionado por el autor.</p></footer>
+</body></html>
