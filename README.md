@@ -1,3 +1,10 @@
+<!-- security-badges -->
+[![Security Policy](https://img.shields.io/badge/security%20policy-defined-2563eb?logo=github)](https://github.com/dcg62572-svg/lucy/blob/main/SECURITY.md)
+[![Secret Scanning](https://img.shields.io/badge/secret%20scanning-enabled-16a34a?logo=github)](https://github.com/dcg62572-svg/lucy/security)
+[![Push Protection](https://img.shields.io/badge/push%20protection-enabled-16a34a?logo=github)](https://github.com/dcg62572-svg/lucy/settings/security_analysis)
+[![Vulnerability Alerts](https://img.shields.io/badge/vulnerability%20alerts-enabled-16a34a?logo=github)](https://github.com/dcg62572-svg/lucy/network/updates)
+[![Dependabot](https://img.shields.io/badge/Dependabot-security%20updates-025e8c?logo=dependabot)](https://github.com/dcg62572-svg/lucy/network/updates)
+
 # Lucy
 
 Página estática para **LUCY · Guía 9 pasos**, con el contenido textual del PDF, el fondo visual proporcionado y un botón de descarga del documento original.
